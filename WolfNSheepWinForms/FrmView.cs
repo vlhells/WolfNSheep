@@ -24,9 +24,10 @@ namespace WolfNSheepWinForms
         {
             if (_field != null)
             {
-                int scale = 20;
+                int scale_of_one = 20;
 
-                Bitmap bmp = new Bitmap(1600, 400);
+                Bitmap bmp = new Bitmap(_field.GetLength(0) * scale_of_one, _field.GetLength(1) * scale_of_one);
+                PbxFieldDraw.Size = new Size(bmp.Width, bmp.Height);
                 PbxFieldDraw.Image = bmp;
                 Graphics g = Graphics.FromImage(PbxFieldDraw.Image);
                 g.Clear(Color.White);
@@ -46,22 +47,23 @@ namespace WolfNSheepWinForms
                         switch (_field[x, y])
                         {
                             case 0:
-                                sb = new SolidBrush(Color.Gray);
+                                sb = new SolidBrush(Color.LightGreen);
                                 break;
 
                             case 1:
-                                sb = new SolidBrush(Color.Red);
+                                sb = new SolidBrush(Color.Gray);
                                 break;
 
                             case 2:
-                                sb = new SolidBrush(Color.Green);
+                                sb = new SolidBrush(Color.LightGray);
                                 break;
                         }
 
-                        g.DrawRectangle(p, dx, dy, scale, scale);
-                        dx += scale;
+                        g.FillRectangle(sb, dx, dy, scale_of_one, scale_of_one);
+                        g.DrawRectangle(p, dx, dy, scale_of_one, scale_of_one);
+                        dx += scale_of_one;
                     }
-                    dy += scale;
+                    dy += scale_of_one;
                     dx = 0;
                 }
                 ViewUpdated.Invoke(this, new ViewUpdatedEventArgs(_direction));
