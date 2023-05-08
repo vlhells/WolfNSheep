@@ -16,6 +16,12 @@ namespace WolfNSheepWinForms
         private void BtnStart_Click(object sender, EventArgs e)
         {
             _field = new int[int.Parse(TbxXSize.Text), int.Parse(TbxYSize.Text)];
+            if (_field.Length > 150 * 150 || _field.GetLength(0) < 1 || _field.GetLength(1) < 1)
+            {
+                MessageBox.Show("Размеры поля не могут превышать 150x150.", "Уведомление безопасности", MessageBoxButtons.OK);
+                return;
+                
+            }
             ViewGotSizes.Invoke(this, new ViewGotSizesEventArgs(_field));
             MessageBox.Show("Управление осуществляется кнопками AWSD.", "Уведомление", MessageBoxButtons.OK);
         }
@@ -64,8 +70,8 @@ namespace WolfNSheepWinForms
                         g.DrawRectangle(p, dx, dy, scale_of_one_x, scale_of_one_y);
                         dx += scale_of_one_x;
                     }
-                    dy += scale_of_one_y;
                     dx = 0;
+                    dy += scale_of_one_y;
                 }
                 PbxFieldDraw.Refresh();
                 ViewUpdated.Invoke(this, new ViewUpdatedEventArgs(_direction));
