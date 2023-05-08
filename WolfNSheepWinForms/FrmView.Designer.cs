@@ -87,7 +87,7 @@
             // 
             PbxFieldDraw.Location = new Point(167, 12);
             PbxFieldDraw.Name = "PbxFieldDraw";
-            PbxFieldDraw.Size = new Size(483, 281);
+            PbxFieldDraw.Size = new Size(600, 300);
             PbxFieldDraw.TabIndex = 7;
             PbxFieldDraw.TabStop = false;
             // 

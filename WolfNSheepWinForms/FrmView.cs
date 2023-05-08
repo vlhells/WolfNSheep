@@ -24,10 +24,11 @@ namespace WolfNSheepWinForms
         {
             if (_field != null)
             {
-                int scale_of_one = 20;
+                float scale_of_one_x = PbxFieldDraw.Size.Width / _field.GetLength(0);
+                float scale_of_one_y = PbxFieldDraw.Size.Height / _field.GetLength(1);
 
-                Bitmap bmp = new Bitmap(_field.GetLength(0) * scale_of_one, _field.GetLength(1) * scale_of_one);
-                PbxFieldDraw.Size = new Size(bmp.Width, bmp.Height);
+                Bitmap bmp = new Bitmap(PbxFieldDraw.Width, PbxFieldDraw.Height);
+                //PbxFieldDraw.Size = new Size(bmp.Width, bmp.Height);
                 PbxFieldDraw.Image = bmp;
                 Graphics g = Graphics.FromImage(PbxFieldDraw.Image);
                 g.Clear(Color.White);
@@ -37,8 +38,8 @@ namespace WolfNSheepWinForms
                 SolidBrush sb = new SolidBrush(Color.Blue);
                 Pen p = new Pen(Color.Black, 1.0f);
 
-                int dx = 0;
-                int dy = 0;
+                float dx = 0;
+                float dy = 0;
 
                 for (int x = 0; x < _field.GetLength(0); x++)
                 {
@@ -59,11 +60,11 @@ namespace WolfNSheepWinForms
                                 break;
                         }
 
-                        g.FillRectangle(sb, dx, dy, scale_of_one, scale_of_one);
-                        g.DrawRectangle(p, dx, dy, scale_of_one, scale_of_one);
-                        dx += scale_of_one;
+                        g.FillRectangle(sb, dx, dy, scale_of_one_x, scale_of_one_y);
+                        g.DrawRectangle(p, dx, dy, scale_of_one_x, scale_of_one_y);
+                        dx += scale_of_one_x;
                     }
-                    dy += scale_of_one;
+                    dy += scale_of_one_y;
                     dx = 0;
                 }
                 PbxFieldDraw.Refresh();
