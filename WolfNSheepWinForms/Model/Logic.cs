@@ -17,7 +17,7 @@ namespace WolfNSheepWinForms.Model
     {
         internal event EventHandler<ModelUpdatedEventArgs> ModelUpdated = delegate { };
 
-        private static List<Sheep> _sheep = new List<Sheep>();
+        private static List<Sheep> _sheep;
 
         private static Wolf _w;
 
@@ -25,6 +25,8 @@ namespace WolfNSheepWinForms.Model
 
         internal void InitField(object sender, ViewGotSizesEventArgs e)
         {
+            _sheep = new List<Sheep>();
+
             _field = e.Field;
 
             int amount_of_sheep = Convert.ToInt32(0.06 * _field.Length);
