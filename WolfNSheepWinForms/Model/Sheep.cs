@@ -4,16 +4,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WolfNSheepWinForms
+namespace WolfNSheepWinForms.Model
 {
     internal class Sheep : Animal
     {
-        public int X => _x;
-        public int Y => _y;
+        internal int X => _x;
+        internal int Y => _y;
 
         private protected override int Sprite => 2;
 
-        public Sheep(int[,] field) : base(field)
+        internal Sheep(int[,] field) : base(field)
         {
 
         }
@@ -44,7 +44,7 @@ namespace WolfNSheepWinForms
             }
         }
 
-        public void Move(int[,] field)
+        internal void Move(int[,] field)
         {
             field[_x, _y] = 0;
 

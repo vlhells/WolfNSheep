@@ -5,7 +5,7 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WolfNSheepWinForms
+namespace WolfNSheepWinForms.View
 {
     public class ViewGotSizesEventArgs : EventArgs
     {
@@ -17,7 +17,7 @@ namespace WolfNSheepWinForms
         }
     }
 
-    public class ViewUpdatedEventArgs: EventArgs
+    public class ViewUpdatedEventArgs : EventArgs
     {
         public string Direction { get; set; }
         public ViewUpdatedEventArgs(string direction)

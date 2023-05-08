@@ -3,21 +3,22 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WolfNSheepWinForms.Model;
+using WolfNSheepWinForms.View;
 
 namespace WolfNSheepWinForms
 {
     internal class Presenter
     {
         private IView _frmView = null;
-        private Model _model = null;
+        private Logic _model = null;
         
-        public Presenter(IView frmView, Model model)
+        internal Presenter(IView frmView, Logic model)
         {
             _frmView = frmView;
             _model = model;
 
             _frmView.ViewGotSizes += ModelInitField;
-            //_model.ModelInitialized += ModelViewUpdate;
             _model.ModelUpdated += ModelViewUpdate;
             _frmView.ViewUpdated += ViewModelUpdate;
         }
@@ -27,7 +28,7 @@ namespace WolfNSheepWinForms
             _frmView.Update();
         }
 
-        public IView ShowView()
+        internal IView ShowView()
         {
             return _frmView;
         }

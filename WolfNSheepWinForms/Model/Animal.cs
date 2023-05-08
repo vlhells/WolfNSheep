@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WolfNSheepWinForms
+namespace WolfNSheepWinForms.Model
 {
     internal abstract class Animal
     {
@@ -13,12 +13,12 @@ namespace WolfNSheepWinForms
         private protected int _y;
         private protected virtual int Sprite { get; }
 
-        public Animal(int[,] field)
+        private protected Animal(int[,] field)
         {
             Born(field);
         }
 
-        public void Born(int[,] field)
+        private void Born(int[,] field)
         {
             do
             {

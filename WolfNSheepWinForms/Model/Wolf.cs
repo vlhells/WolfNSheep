@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WolfNSheepWinForms
+namespace WolfNSheepWinForms.Model
 {
     internal class Wolf : Animal, IPredator
     {
@@ -12,7 +12,7 @@ namespace WolfNSheepWinForms
 
         private protected override int Sprite => 1;
 
-        public Wolf(int[,] field) : base(field)
+        internal Wolf(int[,] field) : base(field)
         {
 
         }
@@ -55,7 +55,7 @@ namespace WolfNSheepWinForms
             return true;
         }
 
-        public void Move(int[,] field, string direction)
+        internal void Move(int[,] field, string direction)
         {
             field[_x, _y] = 0;
 
@@ -77,7 +77,7 @@ namespace WolfNSheepWinForms
                     break;
 
                 case "S":
-                    if (_y + 1 < field.GetLength(1) && field[_x, _y - 1] == 0)
+                    if (_y + 1 < field.GetLength(1) && field[_x, _y + 1] == 0)
                         _y += 1;
                     break;
             }

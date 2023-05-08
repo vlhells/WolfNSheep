@@ -1,3 +1,5 @@
+using WolfNSheepWinForms.View;
+
 namespace WolfNSheepWinForms
 {
     public partial class FrmView : Form, IView
@@ -8,7 +10,7 @@ namespace WolfNSheepWinForms
         public event EventHandler<ViewGotSizesEventArgs> ViewGotSizes = delegate { };
         public event EventHandler<ViewUpdatedEventArgs> ViewUpdated = delegate { };
 
-        public FrmView()
+        internal FrmView()
         {
             InitializeComponent();
         }
@@ -103,7 +105,6 @@ namespace WolfNSheepWinForms
             _direction = "A";
             ViewUpdated.Invoke(this, new ViewUpdatedEventArgs(_direction));
             _direction = null;
-            //DirectionSelected.Invoke(this, new EventArgs());
         }
 
     }

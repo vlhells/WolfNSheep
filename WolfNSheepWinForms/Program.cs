@@ -1,3 +1,5 @@
+using WolfNSheepWinForms.Model;
+
 namespace WolfNSheepWinForms
 {
     internal static class Program
@@ -12,7 +14,7 @@ namespace WolfNSheepWinForms
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
 
-            Presenter p = new Presenter(new FrmView(), new Model());
+            Presenter p = new Presenter(new FrmView(), new Logic());
 
             Application.Run((Form)p.ShowView());
         }
