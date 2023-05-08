@@ -17,15 +17,25 @@ namespace WolfNSheepWinForms
 
         private void BtnStart_Click(object sender, EventArgs e)
         {
-            _field = new int[int.Parse(TbxXSize.Text), int.Parse(TbxYSize.Text)];
-            if (_field.Length > 150 * 150 || _field.GetLength(0) < 1 || _field.GetLength(1) < 1)
+            int x_size = 0;
+            int y_size = 0;
+
+            if (int.TryParse(TbxXSize.Text, out x_size) && int.TryParse(TbxYSize.Text, out y_size) && x_size > 0 && y_size > 0)
             {
-                MessageBox.Show("Размеры поля не могут превышать 150x150.", "Уведомление безопасности", MessageBoxButtons.OK);
-                return;
-                
+                _field = new int[x_size, y_size];
+
+                if (x_size > 300 || y_size > 150)
+                {
+                    MessageBox.Show("Размеры поля не могут превышать 300x150.", "Уведомление безопасности", MessageBoxButtons.OK);
+                    return;
+                }
+                ViewGotSizes.Invoke(this, new ViewGotSizesEventArgs(_field));
+                MessageBox.Show("Управление осуществляется кнопками AWSD.", "Уведомление", MessageBoxButtons.OK);
             }
-            ViewGotSizes.Invoke(this, new ViewGotSizesEventArgs(_field));
-            MessageBox.Show("Управление осуществляется кнопками AWSD.", "Уведомление", MessageBoxButtons.OK);
+            else
+            {
+                MessageBox.Show("Введите адекватные размеры поля.", "Уведомление", MessageBoxButtons.OK);
+            }
         }
 
         private void Update(object sender, PaintEventArgs e)
