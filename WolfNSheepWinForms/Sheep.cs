@@ -13,7 +13,7 @@ namespace WolfNSheepWinForms
 
         private protected override int Sprite => 2;
 
-        public Sheep(int[,] area) : base(area)
+        public Sheep(int[,] field) : base(field)
         {
 
         }
@@ -44,9 +44,9 @@ namespace WolfNSheepWinForms
             }
         }
 
-        public void Move(int[,] area)
+        public void Move(int[,] field)
         {
-            area[_x, _y] = 0;
+            field[_x, _y] = 0;
 
             int x;
             int y;
@@ -55,12 +55,12 @@ namespace WolfNSheepWinForms
             {
                 PreMove(out x, out y);
             }
-            while (IsSomeoneThere(area, x, y));
+            while (IsSomeoneThere(field, x, y));
 
             _x = x;
             _y = y;
 
-            area[_x, _y] = Sprite;
+            field[_x, _y] = Sprite;
         }
     }
 }

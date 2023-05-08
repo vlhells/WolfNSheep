@@ -66,33 +66,38 @@ namespace WolfNSheepWinForms
                     dy += scale_of_one;
                     dx = 0;
                 }
+                PbxFieldDraw.Refresh();
                 ViewUpdated.Invoke(this, new ViewUpdatedEventArgs(_direction));
             }
-        }
-
-        private void BtnA_Click(object sender, EventArgs e)
-        {
-            _direction = "A";
-            ViewUpdated.Invoke(this, new ViewUpdatedEventArgs(_direction));
-            //DirectionSelected.Invoke(this, new EventArgs());
         }
 
         private void BtnW_Click(object sender, EventArgs e)
         {
             _direction = "W";
             ViewUpdated.Invoke(this, new ViewUpdatedEventArgs(_direction));
+            _direction = null;
         }
 
         private void BtnS_Click(object sender, EventArgs e)
         {
             _direction = "S";
             ViewUpdated.Invoke(this, new ViewUpdatedEventArgs(_direction));
+            _direction = null;
         }
 
         private void BtnD_Click(object sender, EventArgs e)
         {
             _direction = "D";
             ViewUpdated.Invoke(this, new ViewUpdatedEventArgs(_direction));
+            _direction = null;
         }
+        private void BtnA_Click(object sender, EventArgs e)
+        {
+            _direction = "A";
+            ViewUpdated.Invoke(this, new ViewUpdatedEventArgs(_direction));
+            _direction = null;
+            //DirectionSelected.Invoke(this, new EventArgs());
+        }
+
     }
 }

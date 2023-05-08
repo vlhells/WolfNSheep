@@ -68,6 +68,7 @@ namespace WolfNSheepWinForms
 
 
                     w.Move(_field, direction);
+                    direction = null;
                     if (!w.Eat(_field, sheep))
                     {
                         w = null;
@@ -77,6 +78,7 @@ namespace WolfNSheepWinForms
                 {
                     s.Move(_field);
                 }
+
             }
 
             ModelUpdated.Invoke(this, new ModelUpdatedEventArgs { });

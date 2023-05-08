@@ -109,6 +109,7 @@
             BtnW.TabIndex = 9;
             BtnW.Text = "W";
             BtnW.UseVisualStyleBackColor = true;
+            BtnW.Click += BtnW_Click;
             // 
             // BtnD
             // 
@@ -118,6 +119,7 @@
             BtnD.TabIndex = 10;
             BtnD.Text = "D";
             BtnD.UseVisualStyleBackColor = true;
+            BtnD.Click += BtnD_Click;
             // 
             // BtnS
             // 
@@ -127,6 +129,7 @@
             BtnS.TabIndex = 11;
             BtnS.Text = "S";
             BtnS.UseVisualStyleBackColor = true;
+            BtnS.Click += BtnS_Click;
             // 
             // FrmView
             // 
