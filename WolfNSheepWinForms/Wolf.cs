@@ -61,23 +61,23 @@ namespace WolfNSheepWinForms
 
             switch (direction)
             {
-                case "W":
+                case "A":
                     if (_x - 1 >= 0 && field[_x - 1, _y] == 0)
                         _x -= 1;
                     break;
 
-                case "A":
+                case "W":
                     if (_y - 1 >= 0 && field[_x, _y - 1] == 0)
                         _y -= 1;
                     break;
 
-                case "S":
+                case "D":
                     if (_x + 1 < field.GetLength(0) && field[_x + 1, _y] == 0)
                         _x += 1;
                     break;
 
-                case "D":
-                    if (_y + 1 < field.GetLength(0) && field[_x, _y - 1] == 0)
+                case "S":
+                    if (_y + 1 < field.GetLength(1) && field[_x, _y - 1] == 0)
                         _y += 1;
                     break;
             }

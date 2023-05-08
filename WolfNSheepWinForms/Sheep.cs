@@ -23,22 +23,22 @@ namespace WolfNSheepWinForms
             x = _x;
             y = _y;
 
-            int vector = rnd.Next(1, 5);
+            int vector = rnd.Next(0, 4);
             switch (vector)
             {
-                case 1:
+                case 0:
                     x += 1;
                     break;
 
-                case 2:
+                case 1:
                     y += 1;
                     break;
 
-                case 3:
+                case 2:
                     x -= 1;
                     break;
 
-                case 4:
+                case 3:
                     y -= 1;
                     break;
             }
