@@ -32,7 +32,7 @@ namespace WolfNSheepWinForms
                     {
                         if (field[i, j] == 2)
                         {
-                            if (false)
+                            if (unsuccessful_avada_kedavra == 1)
                             {
                                 field[_x, _y] = 0;
                                 return false;
