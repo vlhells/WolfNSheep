@@ -47,9 +47,9 @@ namespace WolfNSheepWinForms
                 float dx = 0;
                 float dy = 0;
 
-                for (int x = 0; x < _field.GetLength(0); x++)
+                for (int y = 0; y < _field.GetLength(1); y++)
                 {
-                    for (int y = 0; y < _field.GetLength(1); y++)
+                    for (int x = 0; x < _field.GetLength(0); x++)
                     {
                         switch (_field[x, y])
                         {
