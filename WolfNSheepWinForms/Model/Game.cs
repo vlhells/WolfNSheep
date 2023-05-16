@@ -8,22 +8,17 @@ using WolfNSheepWinForms.View;
 
 namespace WolfNSheepWinForms.Model
 {
-    internal class ModelUpdatedEventArgs
+    internal class Game : IModel
     {
+        public event EventHandler<ModelUpdatedEventArgs> ModelUpdated = delegate { };
 
-    }
+        private List<Sheep> _sheep;
 
-    internal class Logic
-    {
-        internal event EventHandler<ModelUpdatedEventArgs> ModelUpdated = delegate { };
-
-        private static List<Sheep> _sheep;
-
-        private static Wolf _w;
+        private Wolf _w;
 
         private int[,] _field;
 
-        internal void InitField(object sender, ViewGotSizesEventArgs e)
+        public void InitField(object sender, ViewGotSizesEventArgs e)
         {
             _sheep = new List<Sheep>();
 
@@ -40,8 +35,10 @@ namespace WolfNSheepWinForms.Model
             ModelUpdated.Invoke(this, new ModelUpdatedEventArgs { });
         }
 
-        internal void Update(string direction)
+        public void Update(object sender, ViewUpdatedEventArgs e)
         {
+            string direction = e.Direction;
+            
             if (direction != null)
             {
                 if (_w != null)

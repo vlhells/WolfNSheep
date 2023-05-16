@@ -11,9 +11,9 @@ namespace WolfNSheepWinForms
     internal class Presenter
     {
         private IView _frmView = null;
-        private Logic _model = null;
+        private IModel _model = null;
         
-        internal Presenter(IView frmView, Logic model)
+        internal Presenter(IView frmView, IModel model)
         {
             _frmView = frmView;
             _model = model;
@@ -25,7 +25,7 @@ namespace WolfNSheepWinForms
 
         private void ModelViewUpdate(object sender, ModelUpdatedEventArgs e)
         {
-            _frmView.Update();
+            _frmView.Update(sender, e);
         }
 
         internal IView ShowView()
@@ -40,7 +40,7 @@ namespace WolfNSheepWinForms
 
         private void ViewModelUpdate(object sender, ViewUpdatedEventArgs e)
         {
-            _model.Update(e.Direction);
+            _model.Update(this, e);
         }
     }
 }

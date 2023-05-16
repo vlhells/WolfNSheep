@@ -8,7 +8,7 @@ namespace WolfNSheepWinForms.Model
 {
     internal abstract class Animal
     {
-        private protected static Random rnd = new Random();
+        private protected Random rnd = new Random();
         private protected int _x;
         private protected int _y;
         private protected virtual int Sprite { get; }

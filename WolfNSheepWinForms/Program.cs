@@ -14,9 +14,7 @@ namespace WolfNSheepWinForms
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
 
-            Presenter p = new Presenter(new FrmView(), new Logic());
-
-            Application.Run((Form)p.ShowView());
+            Application.Run(new FrmFirst());
         }
     }
 }

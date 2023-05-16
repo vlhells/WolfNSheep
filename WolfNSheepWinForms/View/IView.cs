@@ -4,6 +4,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using WolfNSheepWinForms.Model;
 
 namespace WolfNSheepWinForms.View
 {
@@ -26,9 +27,10 @@ namespace WolfNSheepWinForms.View
         }
     }
 
-    internal interface IView
+    public interface IView
     {
-        public abstract void Update();
+        public void DrawField(object sender, PaintEventArgs e);
+        public void Update(object sender, ModelUpdatedEventArgs e);
 
         public event EventHandler<ViewGotSizesEventArgs> ViewGotSizes;
 

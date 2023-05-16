@@ -1,21 +1,27 @@
+using WolfNSheepWinForms.Model;
 using WolfNSheepWinForms.View;
 
 namespace WolfNSheepWinForms
 {
-    public partial class FrmView : Form, IView
+    public partial class FrmViewParent : Form, IView
     {
-        private static int[,] _field;
-        private static string _direction;
+        private protected int[,] _field = null;
 
-        public event EventHandler<ViewGotSizesEventArgs> ViewGotSizes = delegate { };
-        public event EventHandler<ViewUpdatedEventArgs> ViewUpdated = delegate { };
+        public virtual event EventHandler<ViewGotSizesEventArgs> ViewGotSizes = delegate { };
+        public virtual event EventHandler<ViewUpdatedEventArgs> ViewUpdated = delegate { };
 
-        internal FrmView()
+        internal FrmViewParent()
         {
             InitializeComponent();
         }
 
-        private void BtnStart_Click(object sender, EventArgs e)
+        public void Update(object sender, ModelUpdatedEventArgs e)
+        {
+            ///
+            PbxFieldDraw.Refresh();
+        }
+
+        private protected virtual void BtnStart_Click(object sender, EventArgs e)
         {
             int x_size = 0;
             int y_size = 0;
@@ -30,7 +36,6 @@ namespace WolfNSheepWinForms
                     return;
                 }
                 ViewGotSizes.Invoke(this, new ViewGotSizesEventArgs(_field));
-                MessageBox.Show("Управление осуществляется кнопками AWSD.", "Уведомление", MessageBoxButtons.OK);
             }
             else
             {
@@ -38,20 +43,22 @@ namespace WolfNSheepWinForms
             }
         }
 
-        private void Update(object sender, PaintEventArgs e)
+        public void DrawField(object sender, PaintEventArgs e)
         {
             if (_field != null)
             {
+                //PbxFieldDraw.Size = new Size(bmp.Width, bmp.Height);
+                //Graphics g = Graphics.FromImage(PbxFieldDraw.Image);
+
+                //Graphics g = e.Graphics;
+
                 float scale_of_one_x = PbxFieldDraw.Size.Width / _field.GetLength(0);
                 float scale_of_one_y = PbxFieldDraw.Size.Height / _field.GetLength(1);
 
                 Bitmap bmp = new Bitmap(PbxFieldDraw.Width, PbxFieldDraw.Height);
-                //PbxFieldDraw.Size = new Size(bmp.Width, bmp.Height);
                 PbxFieldDraw.Image = bmp;
                 Graphics g = Graphics.FromImage(PbxFieldDraw.Image);
                 g.Clear(Color.White);
-
-                //Graphics g = e.Graphics;
 
                 SolidBrush sb = new SolidBrush(Color.Blue);
                 Pen p = new Pen(Color.Black, 1.0f);
@@ -86,36 +93,7 @@ namespace WolfNSheepWinForms
                     dy += scale_of_one_y;
                 }
                 PbxFieldDraw.Refresh();
-                ViewUpdated.Invoke(this, new ViewUpdatedEventArgs(_direction));
             }
         }
-
-        private void BtnW_Click(object sender, EventArgs e)
-        {
-            _direction = "W";
-            ViewUpdated.Invoke(this, new ViewUpdatedEventArgs(_direction));
-            _direction = null;
-        }
-
-        private void BtnS_Click(object sender, EventArgs e)
-        {
-            _direction = "S";
-            ViewUpdated.Invoke(this, new ViewUpdatedEventArgs(_direction));
-            _direction = null;
-        }
-
-        private void BtnD_Click(object sender, EventArgs e)
-        {
-            _direction = "D";
-            ViewUpdated.Invoke(this, new ViewUpdatedEventArgs(_direction));
-            _direction = null;
-        }
-        private void BtnA_Click(object sender, EventArgs e)
-        {
-            _direction = "A";
-            ViewUpdated.Invoke(this, new ViewUpdatedEventArgs(_direction));
-            _direction = null;
-        }
-
     }
 }

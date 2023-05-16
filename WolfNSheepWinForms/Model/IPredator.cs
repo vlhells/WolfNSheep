@@ -8,6 +8,6 @@ namespace WolfNSheepWinForms.Model
 {
     internal interface IPredator
     {
-        public bool Eat(int[,] area, List<Sheep> sheep);
+        public bool Eat(int[,] field, List<Sheep> sheep);
     }
 }
