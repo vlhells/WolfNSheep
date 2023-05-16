@@ -10,6 +10,7 @@ namespace WolfNSheepWinForms.Model
 {
     internal class Game : IModel
     {
+        public event EventHandler ModelFieldInitialized = delegate { };
         public event EventHandler<ModelUpdatedEventArgs> ModelUpdated = delegate { };
 
         private List<Sheep> _sheep;
@@ -20,9 +21,14 @@ namespace WolfNSheepWinForms.Model
 
         public void InitField(object sender, ViewGotSizesEventArgs e)
         {
-            _sheep = new List<Sheep>();
-
             _field = e.Field;
+
+            ModelFieldInitialized.Invoke(this, new EventArgs());
+        }
+
+        public void InitFieldStates(object sender, ViewClickedCellEventArgs e)
+        {
+            _sheep = new List<Sheep>();
 
             int amount_of_sheep = Convert.ToInt32(0.06 * _field.Length);
 
@@ -32,7 +38,7 @@ namespace WolfNSheepWinForms.Model
             }
             _w = new Wolf(_field);
 
-            ModelUpdated.Invoke(this, new ModelUpdatedEventArgs { });
+            ModelUpdated.Invoke(this, new ModelUpdatedEventArgs());
         }
 
         public void Update(object sender, ViewUpdatedEventArgs e)

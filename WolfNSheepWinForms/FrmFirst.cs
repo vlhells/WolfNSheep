@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using WolfNSheepWinForms.Model;
 using WolfNSheepWinForms.View;
+using WolvesAndSheep.View;
 
 namespace WolfNSheepWinForms
 {

@@ -9,19 +9,19 @@ namespace WolfNSheepWinForms
 
         public virtual event EventHandler<ViewGotSizesEventArgs> ViewGotSizes = delegate { };
         public virtual event EventHandler<ViewUpdatedEventArgs> ViewUpdated = delegate { };
+        public virtual event EventHandler<ViewClickedCellEventArgs> ViewCellClicked = delegate { };
 
         internal FrmViewParent()
         {
             InitializeComponent();
         }
 
-        public void Update(object sender, ModelUpdatedEventArgs e)
+        public virtual void Update(object sender, ModelUpdatedEventArgs e)
         {
-            ///
             PbxFieldDraw.Refresh();
         }
 
-        private protected virtual void BtnStart_Click(object sender, EventArgs e)
+        private protected virtual void BtnInitField_Click(object sender, EventArgs e)
         {
             int x_size = 0;
             int y_size = 0;
@@ -94,6 +94,11 @@ namespace WolfNSheepWinForms
                 }
                 PbxFieldDraw.Refresh();
             }
+        }
+
+        private protected virtual void BtnStart_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -19,9 +19,12 @@ namespace WolfNSheepWinForms.Model
 
     public interface IModel
     {
+        //public abstract void Initialize(object sender, ViewGotSizesEventArgs e);
         public void InitField(object sender, ViewGotSizesEventArgs e);
         public void Update(object sender, ViewUpdatedEventArgs e);
+        public void InitFieldStates(object sender, ViewClickedCellEventArgs e);
 
+        public event EventHandler ModelFieldInitialized;
         public event EventHandler<ModelUpdatedEventArgs> ModelUpdated;
     }
 }

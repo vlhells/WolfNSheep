@@ -19,6 +19,8 @@ namespace WolfNSheepWinForms
             _model = model;
 
             _frmView.ViewGotSizes += ModelInitField;
+            _frmView.ViewCellClicked += ModelInitFieldStates;
+
             _model.ModelUpdated += ModelViewUpdate;
             _frmView.ViewUpdated += ViewModelUpdate;
         }
@@ -26,6 +28,11 @@ namespace WolfNSheepWinForms
         private void ModelViewUpdate(object sender, ModelUpdatedEventArgs e)
         {
             _frmView.Update(sender, e);
+        }
+
+        private void ModelInitFieldStates(object sender, ViewClickedCellEventArgs e)
+        {
+            _model.InitFieldStates(this, e);
         }
 
         internal IView ShowView()

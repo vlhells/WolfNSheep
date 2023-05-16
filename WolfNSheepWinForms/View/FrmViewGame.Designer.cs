@@ -1,4 +1,4 @@
-﻿namespace WolfNSheepWinForms.View
+﻿namespace WolvesAndSheep.View
 {
     partial class FrmViewGame
     {
@@ -28,90 +28,82 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.BtnA = new System.Windows.Forms.Button();
-            this.BtnW = new System.Windows.Forms.Button();
-            this.BtnD = new System.Windows.Forms.Button();
-            this.BtnS = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.PbxFieldDraw)).BeginInit();
-            this.SuspendLayout();
-            // 
-            // BtnStart
-            // 
-            //this.BtnStart.Click += new System.EventHandler(this.BtnStart_Click);
+            BtnA = new Button();
+            BtnW = new Button();
+            BtnS = new Button();
+            BtnD = new Button();
+            ((System.ComponentModel.ISupportInitialize)PbxFieldDraw).BeginInit();
+            SuspendLayout();
             // 
             // BtnA
             // 
-            this.BtnA.AutoSize = true;
-            this.BtnA.Location = new System.Drawing.Point(620, 756);
-            this.BtnA.Name = "BtnA";
-            this.BtnA.Size = new System.Drawing.Size(126, 115);
-            this.BtnA.TabIndex = 8;
-            this.BtnA.Text = "A";
-            this.BtnA.UseVisualStyleBackColor = true;
-            this.BtnA.Click += new System.EventHandler(this.BtnA_Click);
+            BtnA.Location = new Point(361, 363);
+            BtnA.Name = "BtnA";
+            BtnA.Size = new Size(58, 53);
+            BtnA.TabIndex = 9;
+            BtnA.Text = "A";
+            BtnA.UseVisualStyleBackColor = true;
+            BtnA.Click += BtnA_Click;
             // 
             // BtnW
             // 
-            this.BtnW.AutoSize = true;
-            this.BtnW.Location = new System.Drawing.Point(752, 689);
-            this.BtnW.Name = "BtnW";
-            this.BtnW.Size = new System.Drawing.Size(126, 115);
-            this.BtnW.TabIndex = 9;
-            this.BtnW.Text = "W";
-            this.BtnW.UseVisualStyleBackColor = true;
-            this.BtnW.Click += new System.EventHandler(this.BtnW_Click);
-            // 
-            // BtnD
-            // 
-            this.BtnD.AutoSize = true;
-            this.BtnD.Location = new System.Drawing.Point(884, 756);
-            this.BtnD.Name = "BtnD";
-            this.BtnD.Size = new System.Drawing.Size(126, 115);
-            this.BtnD.TabIndex = 10;
-            this.BtnD.Text = "D";
-            this.BtnD.UseVisualStyleBackColor = true;
-            this.BtnD.Click += new System.EventHandler(this.BtnD_Click);
+            BtnW.Location = new Point(425, 326);
+            BtnW.Name = "BtnW";
+            BtnW.Size = new Size(58, 53);
+            BtnW.TabIndex = 10;
+            BtnW.Text = "W";
+            BtnW.UseVisualStyleBackColor = true;
+            BtnW.Click += BtnW_Click;
             // 
             // BtnS
             // 
-            this.BtnS.AutoSize = true;
-            this.BtnS.Location = new System.Drawing.Point(752, 810);
-            this.BtnS.Name = "BtnS";
-            this.BtnS.Size = new System.Drawing.Size(126, 115);
-            this.BtnS.TabIndex = 11;
-            this.BtnS.Text = "S";
-            this.BtnS.UseVisualStyleBackColor = true;
-            this.BtnS.Click += new System.EventHandler(this.BtnS_Click);
+            BtnS.Location = new Point(425, 385);
+            BtnS.Name = "BtnS";
+            BtnS.Size = new Size(58, 53);
+            BtnS.TabIndex = 11;
+            BtnS.Text = "S";
+            BtnS.UseVisualStyleBackColor = true;
+            BtnS.Click += BtnS_Click;
+            // 
+            // BtnD
+            // 
+            BtnD.Location = new Point(489, 363);
+            BtnD.Name = "BtnD";
+            BtnD.Size = new Size(58, 53);
+            BtnD.TabIndex = 12;
+            BtnD.Text = "D";
+            BtnD.UseVisualStyleBackColor = true;
+            BtnD.Click += BtnD_Click;
             // 
             // FrmViewGame
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 32F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1486, 960);
-            this.Controls.Add(this.BtnS);
-            this.Controls.Add(this.BtnD);
-            this.Controls.Add(this.BtnW);
-            this.Controls.Add(this.BtnA);
-            this.Name = "FrmViewGame";
-            this.Text = "Волк и овцы";
-            this.Paint += new System.Windows.Forms.PaintEventHandler(this.DrawField);
-            this.Controls.SetChildIndex(this.PbxFieldDraw, 0);
-            this.Controls.SetChildIndex(this.BtnStart, 0);
-            this.Controls.SetChildIndex(this.BtnA, 0);
-            this.Controls.SetChildIndex(this.BtnW, 0);
-            this.Controls.SetChildIndex(this.BtnD, 0);
-            this.Controls.SetChildIndex(this.BtnS, 0);
-            ((System.ComponentModel.ISupportInitialize)(this.PbxFieldDraw)).EndInit();
-            this.ResumeLayout(false);
-            this.PerformLayout();
-
+            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(800, 450);
+            Controls.Add(BtnD);
+            Controls.Add(BtnS);
+            Controls.Add(BtnW);
+            Controls.Add(BtnA);
+            Name = "FrmViewGame";
+            Text = "FrmViewGame";
+            Paint += DrawField;
+            Controls.SetChildIndex(BtnInitField, 0);
+            Controls.SetChildIndex(PbxFieldDraw, 0);
+            Controls.SetChildIndex(BtnStart, 0);
+            Controls.SetChildIndex(BtnA, 0);
+            Controls.SetChildIndex(BtnW, 0);
+            Controls.SetChildIndex(BtnS, 0);
+            Controls.SetChildIndex(BtnD, 0);
+            ((System.ComponentModel.ISupportInitialize)PbxFieldDraw).EndInit();
+            ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
 
         private Button BtnA;
         private Button BtnW;
-        private Button BtnD;
         private Button BtnS;
+        private Button BtnD;
     }
 }

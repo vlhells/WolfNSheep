@@ -8,6 +8,16 @@ using WolfNSheepWinForms.Model;
 
 namespace WolfNSheepWinForms.View
 {
+    public class ViewClickedCellEventArgs: EventArgs
+    {
+        public (int x, int y, MouseButtons mouseButton) ClickedCell { get; set; }
+
+        public ViewClickedCellEventArgs((int x, int y, MouseButtons mouseButton) clickedCell)
+        {
+            ClickedCell = clickedCell;
+        }
+    }
+
     public class ViewGotSizesEventArgs : EventArgs
     {
         public int[,] Field { get; set; }
@@ -35,5 +45,7 @@ namespace WolfNSheepWinForms.View
         public event EventHandler<ViewGotSizesEventArgs> ViewGotSizes;
 
         public event EventHandler<ViewUpdatedEventArgs> ViewUpdated;
+
+        public event EventHandler<ViewClickedCellEventArgs> ViewCellClicked;
     }
 }

@@ -28,21 +28,26 @@
         /// </summary>
         private void InitializeComponent()
         {
-            ((System.ComponentModel.ISupportInitialize)(this.PbxFieldDraw)).BeginInit();
-            this.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)PbxFieldDraw).BeginInit();
+            SuspendLayout();
+            // 
+            // PbxFieldDraw
+            // 
+            PbxFieldDraw.MouseClick += PbxFieldDraw_MouseClick;
+            PbxFieldDraw.Paint += DrawField;
             // 
             // FrmViewModel
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 32F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1486, 960);
-            this.Name = "FrmViewModel";
-            this.Text = "FrmViewModel";
-            this.Paint += new System.Windows.Forms.PaintEventHandler(this.DrawField);
-            ((System.ComponentModel.ISupportInitialize)(this.PbxFieldDraw)).EndInit();
-            this.ResumeLayout(false);
-            this.PerformLayout();
-
+            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(800, 450);
+            Margin = new Padding(2, 1, 2, 1);
+            Name = "FrmViewModel";
+            Text = "FrmViewModel";
+            Paint += DrawField;
+            ((System.ComponentModel.ISupportInitialize)PbxFieldDraw).EndInit();
+            ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion

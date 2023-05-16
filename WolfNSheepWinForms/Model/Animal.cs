@@ -18,6 +18,12 @@ namespace WolfNSheepWinForms.Model
             Born(field);
         }
 
+        private protected Animal(int x, int y)
+        {
+            _x = x;
+            _y = y;
+        }
+
         private void Born(int[,] field)
         {
             do

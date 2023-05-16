@@ -1,18 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Configuration;
 using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using WolfNSheepWinForms;
+using WolfNSheepWinForms.View;
 
-namespace WolfNSheepWinForms.View
+namespace WolvesAndSheep.View
 {
     public partial class FrmViewGame : FrmViewParent
     {
+        public override event EventHandler<ViewClickedCellEventArgs> ViewCellClicked = delegate { };
+
         public FrmViewGame()
         {
             InitializeComponent();
@@ -23,8 +26,8 @@ namespace WolfNSheepWinForms.View
         //public override event EventHandler<ViewGotSizesEventArgs> ViewGotSizes;
 
         private protected override void BtnStart_Click(object sender, EventArgs e)
-        { 
-            base.BtnStart_Click(sender, e);
+        {
+            ViewCellClicked.Invoke(this, new ViewClickedCellEventArgs((-1, -1, new MouseButtons())));
             MessageBox.Show("Управление осуществляется кнопками AWSD.", "Уведомление", MessageBoxButtons.OK);
         }
 

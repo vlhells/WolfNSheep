@@ -12,6 +12,7 @@ namespace WolfNSheepWinForms.Model
         public event EventHandler<ModelUpdatedEventArgs> ModelUpdated = delegate { };
 
         public event EventHandler<ModelMapIsNotFilledEnoughEventArgs> ModelIsNotFilledEnough = delegate { };
+        public event EventHandler ModelFieldInitialized = delegate { };
 
         private List<Sheep> _sheep;
 
@@ -21,6 +22,12 @@ namespace WolfNSheepWinForms.Model
         int _minimal_amount_of_wolves;
 
         private int[,] _field = null;
+
+        public void Initialize(object sender, ViewGotSizesEventArgs e)
+        {
+            InitField(sender, e);
+
+        }
 
         public void InitField(object sender, ViewGotSizesEventArgs e)
         {
@@ -32,36 +39,59 @@ namespace WolfNSheepWinForms.Model
             _minimal_amount_of_sheep = Convert.ToInt32(0.05 * _field.Length);
             _minimal_amount_of_wolves = Convert.ToInt32(0.015 * _field.Length);
 
-            ModelUpdated.Invoke(this, new ModelUpdatedEventArgs { });
+            ModelFieldInitialized.Invoke(this, new EventArgs());
         }
 
-        public void InitFieldStates()
+        public void InitFieldStates(object sender, ViewClickedCellEventArgs e)
         {
+            if (e.ClickedCell.x < _field.GetLength(0) &&
+                e.ClickedCell.y < _field.GetLength(1) &&
+                e.ClickedCell.x >= 0 && e.ClickedCell.y >= 0 &&
+                _field[e.ClickedCell.x, e.ClickedCell.y] == 0)
+            {
+                switch (e.ClickedCell.mouseButton)
+                {
+                    case MouseButtons.Left:
+                        _field[e.ClickedCell.x, e.ClickedCell.y] = 1;
+                        _wolves.Add(new Wolf(e.ClickedCell.x, e.ClickedCell.y));
+                        break;
+
+                    case MouseButtons.Right:
+                        _field[e.ClickedCell.x, e.ClickedCell.y] = 2;
+                        _sheep.Add(new Sheep(e.ClickedCell.x, e.ClickedCell.y));
+                        break;
+
+                    case MouseButtons.Middle:
+                        _field[e.ClickedCell.x, e.ClickedCell.y] = 0;
+                        break;
+                }
+                //ModelUpdated.Invoke(this, new ModelUpdatedEventArgs());
+            }
         }
 
         public void Update(object sender, ViewUpdatedEventArgs e)
         {
-            string direction = e.Direction;
-
-            if (direction != null)
+            if (_wolves.Count != 0)
             {
-                //if (_w != null)
-                //{
-                //    _w.Move(_field, direction);
-                //    direction = null;
-                //    if (!_w.Eat(_field, _sheep))
-                //    {
-                //        _w = null;
-                //    }
-                //}
+                for (int w = 0; w < _wolves.Count; w++)
+                {
+                    _wolves[w].Move(_field);
+                    if (!_wolves[w].Eat(_field, _sheep))
+                    {
+                        _wolves.Remove(_wolves[w]);
+                    }
+                }
+            }
+
+            if (_sheep.Count != 0)
+            {
                 foreach (var s in _sheep)
                 {
                     s.Move(_field);
                 }
-
             }
 
-            ModelUpdated.Invoke(this, new ModelUpdatedEventArgs { });
+            ModelUpdated.Invoke(this, new ModelUpdatedEventArgs());
         }
     }
 }

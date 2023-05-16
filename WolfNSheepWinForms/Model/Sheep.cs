@@ -18,6 +18,11 @@ namespace WolfNSheepWinForms.Model
 
         }
 
+        internal Sheep(int x, int y): base(x, y)
+        {
+
+        }
+
         private void PreMove(out int x, out int y)
         {
             x = _x;
