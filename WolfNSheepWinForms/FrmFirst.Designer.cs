@@ -28,44 +28,47 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.BtnLoadGame = new System.Windows.Forms.Button();
-            this.BtnLoadModel = new System.Windows.Forms.Button();
-            this.SuspendLayout();
+            BtnLoadGame = new Button();
+            BtnLoadModel = new Button();
+            SuspendLayout();
             // 
             // BtnLoadGame
             // 
-            this.BtnLoadGame.AutoSize = true;
-            this.BtnLoadGame.Location = new System.Drawing.Point(134, 143);
-            this.BtnLoadGame.Name = "BtnLoadGame";
-            this.BtnLoadGame.Size = new System.Drawing.Size(226, 126);
-            this.BtnLoadGame.TabIndex = 0;
-            this.BtnLoadGame.Text = "Запустить игру";
-            this.BtnLoadGame.UseVisualStyleBackColor = true;
-            this.BtnLoadGame.Click += new System.EventHandler(this.BtnLoadGame_Click);
+            BtnLoadGame.AutoSize = true;
+            BtnLoadGame.Location = new Point(72, 67);
+            BtnLoadGame.Margin = new Padding(2, 1, 2, 1);
+            BtnLoadGame.Name = "BtnLoadGame";
+            BtnLoadGame.Size = new Size(122, 59);
+            BtnLoadGame.TabIndex = 0;
+            BtnLoadGame.Text = "Запустить игру";
+            BtnLoadGame.UseVisualStyleBackColor = true;
+            BtnLoadGame.Click += BtnLoadGame_Click;
             // 
             // BtnLoadModel
             // 
-            this.BtnLoadModel.AutoSize = true;
-            this.BtnLoadModel.Location = new System.Drawing.Point(436, 143);
-            this.BtnLoadModel.Name = "BtnLoadModel";
-            this.BtnLoadModel.Size = new System.Drawing.Size(226, 126);
-            this.BtnLoadModel.TabIndex = 1;
-            this.BtnLoadModel.Text = "Запустить модель";
-            this.BtnLoadModel.UseVisualStyleBackColor = true;
-            this.BtnLoadModel.Click += new System.EventHandler(this.BtnLoadModel_Click);
+            BtnLoadModel.AutoSize = true;
+            BtnLoadModel.Location = new Point(235, 67);
+            BtnLoadModel.Margin = new Padding(2, 1, 2, 1);
+            BtnLoadModel.Name = "BtnLoadModel";
+            BtnLoadModel.Size = new Size(124, 59);
+            BtnLoadModel.TabIndex = 1;
+            BtnLoadModel.Text = "Запустить автоигру";
+            BtnLoadModel.UseVisualStyleBackColor = true;
+            BtnLoadModel.Click += BtnLoadModel_Click;
             // 
             // FrmFirst
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 32F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.BtnLoadModel);
-            this.Controls.Add(this.BtnLoadGame);
-            this.Name = "FrmFirst";
-            this.Text = "FrmFirst";
-            this.ResumeLayout(false);
-            this.PerformLayout();
-
+            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(431, 211);
+            Controls.Add(BtnLoadModel);
+            Controls.Add(BtnLoadGame);
+            Margin = new Padding(2, 1, 2, 1);
+            MaximumSize = new Size(447, 250);
+            Name = "FrmFirst";
+            Text = "FrmFirst";
+            ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion

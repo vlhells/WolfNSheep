@@ -11,8 +11,7 @@ namespace WolfNSheepWinForms.Model
     {
         public event EventHandler<ModelUpdatedEventArgs> ModelUpdated = delegate { };
 
-        public event EventHandler<ModelMapIsNotFilledEnoughEventArgs> ModelIsNotFilledEnough = delegate { };
-        public event EventHandler ModelFieldInitialized = delegate { };
+        public event EventHandler<ModelMapIsNotFilledEnoughEventArgs> ModelMapIsNotFilledEnough = delegate { };
 
         private List<Sheep> _sheep;
 
@@ -23,12 +22,6 @@ namespace WolfNSheepWinForms.Model
 
         private int[,] _field = null;
 
-        public void Initialize(object sender, ViewGotSizesEventArgs e)
-        {
-            InitField(sender, e);
-
-        }
-
         public void InitField(object sender, ViewGotSizesEventArgs e)
         {
             _field = e.Field;
@@ -38,8 +31,6 @@ namespace WolfNSheepWinForms.Model
 
             _minimal_amount_of_sheep = Convert.ToInt32(0.05 * _field.Length);
             _minimal_amount_of_wolves = Convert.ToInt32(0.015 * _field.Length);
-
-            ModelFieldInitialized.Invoke(this, new EventArgs());
         }
 
         public void InitFieldStates(object sender, ViewClickedCellEventArgs e)
@@ -65,13 +56,19 @@ namespace WolfNSheepWinForms.Model
                         _field[e.ClickedCell.x, e.ClickedCell.y] = 0;
                         break;
                 }
-                //ModelUpdated.Invoke(this, new ModelUpdatedEventArgs());
             }
         }
 
         public void Update(object sender, ViewUpdatedEventArgs e)
         {
-            if (_wolves.Count != 0)
+            if (_wolves.Count < _minimal_amount_of_wolves ||
+                _sheep.Count < _minimal_amount_of_sheep)
+            {
+                ModelMapIsNotFilledEnough.Invoke(sender, new ModelMapIsNotFilledEnoughEventArgs(
+                    (_minimal_amount_of_wolves - _wolves.Count, _minimal_amount_of_sheep - _sheep.Count)));
+                return;
+            }
+            else if (_wolves.Count > 0 && _sheep.Count > 0)
             {
                 for (int w = 0; w < _wolves.Count; w++)
                 {
@@ -81,17 +78,14 @@ namespace WolfNSheepWinForms.Model
                         _wolves.Remove(_wolves[w]);
                     }
                 }
-            }
 
-            if (_sheep.Count != 0)
-            {
                 foreach (var s in _sheep)
                 {
                     s.Move(_field);
                 }
-            }
 
-            ModelUpdated.Invoke(this, new ModelUpdatedEventArgs());
+                ModelUpdated.Invoke(this, new ModelUpdatedEventArgs());
+            }
         }
     }
 }

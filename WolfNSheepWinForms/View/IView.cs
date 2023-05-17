@@ -41,6 +41,7 @@ namespace WolfNSheepWinForms.View
     {
         public void DrawField(object sender, PaintEventArgs e);
         public void Update(object sender, ModelUpdatedEventArgs e);
+        public void SayThatMapIsNotFilledEnough(object sender, ModelMapIsNotFilledEnoughEventArgs e);
 
         public event EventHandler<ViewGotSizesEventArgs> ViewGotSizes;
 

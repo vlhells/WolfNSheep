@@ -1,3 +1,4 @@
+using System;
 using WolfNSheepWinForms.Model;
 using WolfNSheepWinForms.View;
 
@@ -14,6 +15,16 @@ namespace WolfNSheepWinForms
         internal FrmViewParent()
         {
             InitializeComponent();
+        }
+
+        public void SayThatMapIsNotFilledEnough(object sender, ModelMapIsNotFilledEnoughEventArgs e)
+        {
+            this.Hide();
+            MessageBox.Show(this, 
+                $"Карта заполнена недостаточно.\nНужно ещё:\n{e.Needables.needable_wolves} волков\n{e.Needables.needable_sheep} овец", 
+                "Уведомление",
+                MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            this.Show();
         }
 
         public virtual void Update(object sender, ModelUpdatedEventArgs e)
