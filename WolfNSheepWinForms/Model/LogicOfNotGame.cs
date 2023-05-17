@@ -31,6 +31,8 @@ namespace WolfNSheepWinForms.Model
 
             _minimal_amount_of_sheep = Convert.ToInt32(0.05 * _field.Length);
             _minimal_amount_of_wolves = Convert.ToInt32(0.015 * _field.Length);
+            if (_minimal_amount_of_wolves == 0)
+                _minimal_amount_of_wolves = 1;
         }
 
         public void InitFieldStates(object sender, ViewClickedCellEventArgs e)
