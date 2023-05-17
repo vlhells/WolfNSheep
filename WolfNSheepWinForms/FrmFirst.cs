@@ -15,7 +15,7 @@ namespace WolfNSheepWinForms
 {
     public partial class FrmFirst : Form
     {
-        Presenter p;
+        Presenter p = null;
 
         public FrmFirst()
         {

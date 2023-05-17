@@ -44,7 +44,8 @@ namespace WolfNSheepWinForms.View
 
         private protected override void BtnStart_Click(object sender, EventArgs e)
         {
-            ViewUpdated.Invoke(this, new ViewUpdatedEventArgs("aboba"));
+            if (_field != null)
+                ViewUpdated.Invoke(this, new ViewUpdatedEventArgs("aboba"));
         }
     }
 }

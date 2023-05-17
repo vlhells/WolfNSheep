@@ -12,13 +12,13 @@ namespace WolfNSheepWinForms.Model
     {
         public event EventHandler ModelFieldInitialized = delegate { };
         public event EventHandler<ModelUpdatedEventArgs> ModelUpdated = delegate { };
-        public event EventHandler<ModelMapIsNotFilledEnoughEventArgs> ModelMapIsNotFilledEnough;
+        public event EventHandler<ModelMapIsNotFilledEnoughEventArgs> ModelMapIsNotFilledEnough = delegate { };
 
-        private List<Sheep> _sheep;
+        private List<Sheep> _sheep = null;
 
-        private Wolf _w;
+        private Wolf _w = null;
 
-        private int[,] _field;
+        private int[,] _field = null;
 
         public void InitField(object sender, ViewGotSizesEventArgs e)
         {

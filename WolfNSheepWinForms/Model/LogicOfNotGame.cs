@@ -13,12 +13,12 @@ namespace WolfNSheepWinForms.Model
 
         public event EventHandler<ModelMapIsNotFilledEnoughEventArgs> ModelMapIsNotFilledEnough = delegate { };
 
-        private List<Sheep> _sheep;
+        private List<Sheep> _sheep = null;
 
-        private List<Wolf> _wolves;
+        private List<Wolf> _wolves = null;
 
-        int _minimal_amount_of_sheep;
-        int _minimal_amount_of_wolves;
+        int _minimal_amount_of_sheep = 0;
+        int _minimal_amount_of_wolves = 0;
 
         private int[,] _field = null;
 
