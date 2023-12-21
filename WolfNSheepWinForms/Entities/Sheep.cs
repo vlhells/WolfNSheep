@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace WolfNSheepWinForms.Model
+﻿namespace WolvesAndSheep.Entities
 {
     internal class Sheep : Animal
     {
@@ -18,17 +12,20 @@ namespace WolfNSheepWinForms.Model
 
         }
 
-        internal Sheep(int x, int y): base(x, y)
+        internal Sheep(int x, int y) : base(x, y)
         {
 
         }
 
-        private void PreMove(out int x, out int y)
+		/// <summary>
+		/// Performs primary movement (can be canceled if new point is not free). Uses in Move method.
+		/// </summary>
+		private void PreMove(out int x, out int y)
         {
             x = _x;
             y = _y;
 
-            int vector = rnd.Next(0, 4);
+            int vector = _rnd.Next(0, 4);
             switch (vector)
             {
                 case 0:
@@ -49,7 +46,10 @@ namespace WolfNSheepWinForms.Model
             }
         }
 
-        internal void Move(int[,] field)
+		/// <summary>
+		/// Move sheep in map (array).
+		/// </summary>
+		internal void Move(int[,] field)
         {
             field[_x, _y] = 0;
 

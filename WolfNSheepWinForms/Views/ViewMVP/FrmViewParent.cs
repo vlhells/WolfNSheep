@@ -1,6 +1,5 @@
-using System;
-using WolfNSheepWinForms.Model;
-using WolfNSheepWinForms.View;
+using WolvesAndSheep.Interfaces;
+using WolvesAndSheep.Views.View;
 
 namespace WolfNSheepWinForms
 {
@@ -21,7 +20,7 @@ namespace WolfNSheepWinForms
         {
             this.Hide();
             MessageBox.Show(this, 
-                $"Карта заполнена недостаточно.\nНужно ещё:\n{e.Needables.needable_wolves} волков\n{e.Needables.needable_sheep} овец", 
+                $"Карта заполнена недостаточно.\nНужно ещё:\n{e.RequiredAnimalsCount.requiredWolvesCount} волков\n{e.RequiredAnimalsCount.requiredSheepCount} овец", 
                 "Уведомление",
                 MessageBoxButtons.OK, MessageBoxIcon.Warning);
             this.Show();
@@ -34,14 +33,14 @@ namespace WolfNSheepWinForms
 
         private protected virtual void BtnInitField_Click(object sender, EventArgs e)
         {
-            int x_size = 0;
-            int y_size = 0;
+            int xSize = 0;
+            int ySize = 0;
 
-            if (int.TryParse(TbxXSize.Text, out x_size) && int.TryParse(TbxYSize.Text, out y_size) && x_size > 0 && y_size > 0)
+            if (int.TryParse(TbxXSize.Text, out xSize) && int.TryParse(TbxYSize.Text, out ySize) && xSize > 0 && ySize > 0)
             {
-                _field = new int[x_size, y_size];
+                _field = new int[xSize, ySize];
 
-                if (x_size > 300 || y_size > 150)
+                if (xSize > 300 || ySize > 150)
                 {
                     MessageBox.Show("Размеры поля не могут превышать 300x150.", "Уведомление безопасности", MessageBoxButtons.OK);
                     return;
@@ -58,13 +57,8 @@ namespace WolfNSheepWinForms
         {
             if (_field != null)
             {
-                //PbxFieldDraw.Size = new Size(bmp.Width, bmp.Height);
-                //Graphics g = Graphics.FromImage(PbxFieldDraw.Image);
-
-                //Graphics g = e.Graphics;
-
-                float scale_of_one_x = PbxFieldDraw.Size.Width / _field.GetLength(0);
-                float scale_of_one_y = PbxFieldDraw.Size.Height / _field.GetLength(1);
+                float scaleOfOneX = PbxFieldDraw.Size.Width / _field.GetLength(0);
+                float scaleOfOneY = PbxFieldDraw.Size.Height / _field.GetLength(1);
 
                 Bitmap bmp = new Bitmap(PbxFieldDraw.Width, PbxFieldDraw.Height);
                 PbxFieldDraw.Image = bmp;
@@ -96,20 +90,20 @@ namespace WolfNSheepWinForms
                                 break;
                         }
 
-                        g.FillRectangle(sb, dx, dy, scale_of_one_x, scale_of_one_y);
-                        g.DrawRectangle(p, dx, dy, scale_of_one_x, scale_of_one_y);
-                        dx += scale_of_one_x;
+                        g.FillRectangle(sb, dx, dy, scaleOfOneX, scaleOfOneY);
+                        g.DrawRectangle(p, dx, dy, scaleOfOneX, scaleOfOneY);
+                        dx += scaleOfOneX;
                     }
                     dx = 0;
-                    dy += scale_of_one_y;
+                    dy += scaleOfOneY;
                 }
                 PbxFieldDraw.Refresh();
             }
         }
 
-        private protected virtual void BtnStart_Click(object sender, EventArgs e)
-        {
-
-        }
-    }
+		private protected virtual void BtnStart_Click(object sender, EventArgs e)
+		{
+			
+		}
+	}
 }

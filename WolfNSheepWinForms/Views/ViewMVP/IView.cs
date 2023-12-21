@@ -1,14 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
-using WolfNSheepWinForms.Model;
+﻿using WolvesAndSheep.Interfaces;
 
-namespace WolfNSheepWinForms.View
+namespace WolvesAndSheep.Views.View
 {
-    public class ViewClickedCellEventArgs: EventArgs
+    public class ViewClickedCellEventArgs : EventArgs
     {
         public (int x, int y, MouseButtons mouseButton) ClickedCell { get; set; }
 

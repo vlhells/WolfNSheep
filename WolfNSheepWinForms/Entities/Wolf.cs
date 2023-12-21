@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using WolvesAndSheep.Interfaces;
 
-namespace WolfNSheepWinForms.Model
+namespace WolvesAndSheep.Entities
 {
     internal class Wolf : Animal, IPredator
     {
-        private int unsuccessful_avada_kedavra = 0;
+        private int _hasBeenEatenBySheep = 0;
 
         private protected override int Sprite => 1;
 
@@ -24,7 +20,7 @@ namespace WolfNSheepWinForms.Model
 
         public bool Eat(int[,] field, List<Sheep> sheep)
         {
-            unsuccessful_avada_kedavra = rnd.Next(0, 2);
+            _hasBeenEatenBySheep = _rnd.Next(0, 2);
 
             for (int i = _x - 1; i <= _x + 1; i++)
             {
@@ -37,7 +33,7 @@ namespace WolfNSheepWinForms.Model
                     {
                         if (field[i, j] == 2)
                         {
-                            if (unsuccessful_avada_kedavra == 1)
+                            if (_hasBeenEatenBySheep == 1)
                             {
                                 field[_x, _y] = 0;
                                 return false;
@@ -60,7 +56,10 @@ namespace WolfNSheepWinForms.Model
             return true;
         }
 
-        internal void Move(int[,] field, string direction)
+		/// <summary>
+		/// Moves by A,W,S,D (direction) on keyboard.
+		/// </summary>
+		internal void Move(int[,] field, string direction)
         {
             field[_x, _y] = 0;
 
@@ -90,11 +89,14 @@ namespace WolfNSheepWinForms.Model
             field[_x, _y] = Sprite;
         }
 
-        internal void Move(int[,] field)
+		/// <summary>
+		/// Moves in automatic mode.
+		/// </summary>
+		internal void Move(int[,] field)
         {
             field[_x, _y] = 0;
 
-            switch (rnd.Next(0, 4))
+            switch (_rnd.Next(0, 4))
             {
                 case 0:
                     if (_x - 1 >= 0 && field[_x - 1, _y] == 0)

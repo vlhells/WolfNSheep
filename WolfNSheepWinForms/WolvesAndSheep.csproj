@@ -9,7 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Update="View\FrmViewParent.cs">
+    <Compile Update="Views\ViewMVP\FrmViewParent.cs">
       <SubType>Form</SubType>
     </Compile>
   </ItemGroup>

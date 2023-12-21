@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using WolfNSheepWinForms.Model;
-using WolfNSheepWinForms.View;
+﻿using WolvesAndSheep.Interfaces;
+using WolvesAndSheep.Views.View;
 
 namespace WolfNSheepWinForms
 {

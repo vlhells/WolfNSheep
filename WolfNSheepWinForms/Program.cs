@@ -1,5 +1,3 @@
-using WolfNSheepWinForms.Model;
-
 namespace WolfNSheepWinForms
 {
     internal static class Program

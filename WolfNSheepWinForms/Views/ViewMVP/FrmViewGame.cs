@@ -1,14 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using WolfNSheepWinForms;
-using WolfNSheepWinForms.View;
+﻿using WolfNSheepWinForms;
+using WolvesAndSheep.Views.View;
 
 namespace WolvesAndSheep.View
 {
@@ -23,7 +14,6 @@ namespace WolvesAndSheep.View
 
         private string _direction;
         public override event EventHandler<ViewUpdatedEventArgs> ViewUpdated = delegate { };
-        //public override event EventHandler<ViewGotSizesEventArgs> ViewGotSizes;
 
         private protected override void BtnStart_Click(object sender, EventArgs e)
         {

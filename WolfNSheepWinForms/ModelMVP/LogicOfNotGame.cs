@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using WolfNSheepWinForms.View;
+﻿using WolvesAndSheep.Entities;
+using WolvesAndSheep.Interfaces;
+using WolvesAndSheep.Views.View;
 
 namespace WolfNSheepWinForms.Model
 {
@@ -17,8 +14,8 @@ namespace WolfNSheepWinForms.Model
 
         private List<Wolf> _wolves = null;
 
-        int _minimal_amount_of_sheep = 0;
-        int _minimal_amount_of_wolves = 0;
+        int _minimalAmountOfSheep = 0;
+        int _minimalAmountOfWolves = 0;
 
         private int[,] _field = null;
 
@@ -29,10 +26,10 @@ namespace WolfNSheepWinForms.Model
             _sheep = new List<Sheep>();
             _wolves = new List<Wolf>();
 
-            _minimal_amount_of_sheep = Convert.ToInt32(0.05 * _field.Length);
-            _minimal_amount_of_wolves = Convert.ToInt32(0.015 * _field.Length);
-            if (_minimal_amount_of_wolves == 0)
-                _minimal_amount_of_wolves = 1;
+			_minimalAmountOfSheep = Convert.ToInt32(0.05 * _field.Length);
+			_minimalAmountOfWolves = Convert.ToInt32(0.015 * _field.Length);
+            if (_minimalAmountOfWolves == 0)
+				_minimalAmountOfWolves = 1;
         }
 
         public void InitFieldStates(object sender, ViewClickedCellEventArgs e)
@@ -63,11 +60,11 @@ namespace WolfNSheepWinForms.Model
 
         public void Update(object sender, ViewUpdatedEventArgs e)
         {
-            if (_wolves.Count < _minimal_amount_of_wolves ||
-                _sheep.Count < _minimal_amount_of_sheep)
+            if (_wolves.Count < _minimalAmountOfWolves ||
+                _sheep.Count < _minimalAmountOfSheep)
             {
                 ModelMapIsNotFilledEnough.Invoke(sender, new ModelMapIsNotFilledEnoughEventArgs(
-                    (_minimal_amount_of_wolves - _wolves.Count, _minimal_amount_of_sheep - _sheep.Count)));
+                    (_minimalAmountOfWolves - _wolves.Count, _minimalAmountOfSheep - _sheep.Count)));
                 return;
             }
             else if (_wolves.Count > 0 && _sheep.Count > 0)
